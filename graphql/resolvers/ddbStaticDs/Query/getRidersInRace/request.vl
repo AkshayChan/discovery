@@ -1,0 +1,15 @@
+{
+    "version" : "2017-02-28",
+    "operation" : "Query",
+    "index" : "sk-pk-index",
+    "query" : {
+        "expression": "sk = :mySK and begins_with(pk, :myPK)",
+        "expressionValues" : {
+            ":mySK": $util.dynamodb.toDynamoDBJson("RACE#RaceID=${ctx.args.raceId}#"),
+            ":myPK": {
+                "S": "RIDER#"
+            }
+        }
+    },
+    "select" : "ALL_ATTRIBUTES",
+}

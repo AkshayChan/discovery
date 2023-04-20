@@ -1,0 +1,14 @@
+{
+    "version": "2018-05-29",
+    "operation": "UpdateItem",
+    "key" : {
+      "pk" : $util.dynamodb.toDynamoDBJson("RIDER#UCIID=${context.arguments.uciId}#"),
+      "sk" : $util.dynamodb.toDynamoDBJson("CHEER#RaceID=${context.arguments.raceId}#")
+    },
+    "update": {
+      "expression" : "add upvotes :updateValue",
+       "expressionValues" : {
+           ":updateValue" : { "N" : 1 }
+       }
+    }
+}

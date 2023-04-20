@@ -1,0 +1,37 @@
+{
+  "name": "ddb-resolver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "npm install && tsc && cp package.json dist/package.json && cp package-lock.json dist/package-lock.json && cd dist && npm install --only=prod",
+    "watch": "tsc --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@eurosportdigital/types-eurosport-cycling": "1.0.12",
+    "aws-lambda": "^1.0.6",
+    "aws-sdk": "^2.840.0",
+    "aws-xray-sdk": "^3.2.0",
+    "lodash": "^4.17.21",
+    "md5": "^2.3.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-typescript": "^7.13.0",
+    "@tsconfig/node12": "^1.0.7",
+    "@types/aws-lambda": "^8.10.71",
+    "@types/jest": "^26.0.21",
+    "@types/lodash": "^4.14.168",
+    "@types/md5": "^2.3.0",
+    "@types/node": "^14.14.10",
+    "@types/uuid": "^8.3.0",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3",
+    "typescript": "^4.1.2"
+  }
+}

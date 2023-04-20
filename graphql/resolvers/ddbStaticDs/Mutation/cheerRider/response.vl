@@ -1,0 +1,6 @@
+## Pass back the result from DynamoDB. **
+$util.toJson({
+    "cheers": $ctx.result.upvotes,
+    "uciId": $context.arguments.uciId,
+    "raceId": $context.arguments.raceId
+})

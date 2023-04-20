@@ -1,0 +1,15 @@
+{
+    "version": "2017-02-28",
+    "operation": "Query",
+    "query" : {
+        "expression": "pk = :myPK and begins_with(sk, :mySK)",
+        "expressionValues" : {
+            ":myPK": $util.dynamodb.toDynamoDBJson("LIVERIDERSTRACKING#RaceID=${ctx.args.raceId}#"),
+            ":mySK": $util.dynamodb.toDynamoDBJson("UCIID=${ctx.args.uciId}#")
+        }
+    },
+    "limit": $util.toJson($util.defaultIfNullOrEmpty($ctx.args.limit, 1)),
+    "scanIndexForward" : false,
+    "select" : "ALL_ATTRIBUTES",
+    "nextToken": $util.toJson($util.defaultIfNullOrEmpty($ctx.args.nextToken, null)),
+}

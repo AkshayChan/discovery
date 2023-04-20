@@ -1,0 +1,123 @@
+{
+  "RecordFormat": {
+    "RecordFormatType": "JSON",
+    "MappingParameters": {
+      "JSONMappingParameters": {
+        "RecordRowPath": "$"
+      }
+    }
+  },
+  "RecordEncoding": "UTF-8",
+  "RecordColumns": [
+    {
+      "Name": "ServerTimeStamp",
+      "Mapping": "$.TimeStamp",
+      "SqlType": "TIMESTAMP"
+    },
+    {
+      "Name": "SeasonID",
+      "Mapping": "$.SeasonID",
+      "SqlType": "INTEGER"
+    },
+    {
+      "Name": "EventID",
+      "Mapping": "$.EventID",
+      "SqlType": "INTEGER"
+    },
+    {
+      "Name": "RaceID",
+      "Mapping": "$.RaceID",
+      "SqlType": "INTEGER"
+    },
+    {
+      "Name": "EventTimeStamp",
+      "Mapping": "$.Captures[0:].TimeStamp",
+      "SqlType": "TIMESTAMP"
+    },
+    {
+      "Name": "UCIID",
+      "Mapping": "$.Captures[0:].UCIID",
+      "SqlType": "BIGINT"
+    },
+    {
+      "Name": "Bib",
+      "Mapping": "$.Captures[0:].Bib",
+      "SqlType": "INTEGER"
+    },
+    {
+      "Name": "RiderRank",
+      "Mapping": "$.Captures[0:].Rank",
+      "SqlType": "INTEGER"
+    },
+    {
+      "Name": "State",
+      "Mapping": "$.Captures[0:].State",
+      "SqlType": "VARCHAR(4)"
+    },
+    {
+      "Name": "Distance",
+      "Mapping": "$.Captures[0:].Distance",
+      "SqlType": "DECIMAL(1,1)"
+    },
+    {
+      "Name": "DistanceProj",
+      "Mapping": "$.Captures[0:].DistanceProj",
+      "SqlType": "DECIMAL(1,1)"
+    },
+    {
+      "Name": "Speed",
+      "Mapping": "$.Captures[0:].Speed",
+      "SqlType": "DECIMAL(4,2)"
+    },
+    {
+      "Name": "SpeedMax",
+      "Mapping": "$.Captures[0:].SpeedMax",
+      "SqlType": "DECIMAL(4,2)"
+    },
+    {
+      "Name": "SpeedAvg",
+      "Mapping": "$.Captures[0:].SpeedAvg",
+      "SqlType": "DECIMAL(4,2)"
+    },
+    {
+      "Name": "DistanceFirst",
+      "Mapping": "$.Captures[0:].DistanceFirst",
+      "SqlType": "DECIMAL(1,1)"
+    },
+    {
+      "Name": "DistanceNext",
+      "Mapping": "$.Captures[0:].DistanceNext",
+      "SqlType": "DECIMAL(1,1)"
+    },
+    {
+      "Name": "Acc",
+      "Mapping": "$.Captures[0:].Acc",
+      "SqlType": "DECIMAL(5,4)"
+    },
+    {
+      "Name": "Lat",
+      "Mapping": "$.Captures[0:].Pos.Lat",
+      "SqlType": "DOUBLE"
+    },
+    {
+      "Name": "Lng",
+      "Mapping": "$.Captures[0:].Pos.Lng",
+      "SqlType": "DOUBLE"
+    },
+    {
+      "Name": "RiderHeartrate",
+      "Mapping": "$.Captures[0:].Heartrate",
+      "SqlType": "INTEGER"
+    },
+    {
+      "Name": "RiderCadency",
+      "Mapping": "$.Captures[0:].Cadency",
+      "SqlType": "INTEGER"
+    },
+    {
+      "Name": "RiderPower",
+      "Mapping": "$.Captures[0:].Power",
+      "SqlType": "INTEGER"
+    }
+  ]
+}

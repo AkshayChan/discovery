@@ -1,0 +1,231 @@
+{
+    "dataSources": {
+        "ddbResolverDs": {
+            "Query": [
+                {
+                    "name": "getEvents",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getCurrentRiderData",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getRaceResultStats",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getRidersResultsStats",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getEventStandings",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getSeasonStandings",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getStatAwards",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getSeasonBlueJerseys",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getRiderDetails",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getEventRounds",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getLeagues",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getLiveRace",
+                    "type": "lambda"
+                },
+                {
+                    "name": "getEventRoundsLatter",
+                    "type": "lambda"
+                }
+            ]
+        },
+        "ddbStaticDs": {
+            "Mutation": [
+                {
+                    "name": "cheerRider",
+                    "type": "vtl",
+                    "response": "graphql/resolvers/ddbStaticDs/Mutation/cheerRider/response.vl",
+                    "request": "graphql/resolvers/ddbStaticDs/Mutation/cheerRider/request.vl"
+                }
+            ],
+            "Query": [
+                {
+                    "name": "getRaceResults",
+                    "type": "vtl",
+                    "response": "graphql/resolvers/ddbStaticDs/Query/getRaceResults/response.vl",
+                    "request": "graphql/resolvers/ddbStaticDs/Query/getRaceResults/request.vl"
+                },
+                {
+                    "name": "getClassification",
+                    "type": "vtl",
+                    "response": "graphql/resolvers/ddbStaticDs/Query/getClassification/response.vl",
+                    "request": "graphql/resolvers/ddbStaticDs/Query/getClassification/request.vl"
+                },
+                {
+                    "name": "getRacesForEvent",
+                    "type": "vtl",
+                    "response": "graphql/resolvers/ddbStaticDs/Query/getRacesForEvent/response.vl",
+                    "request": "graphql/resolvers/ddbStaticDs/Query/getRacesForEvent/request.vl"
+                },
+                {
+                    "name": "getRider",
+                    "type": "vtl",
+                    "response": "graphql/resolvers/ddbStaticDs/Query/getRider/response.vl",
+                    "request": "graphql/resolvers/ddbStaticDs/Query/getRider/request.vl"
+                },
+                {
+                    "name": "getRiderResultsInRaces",
+                    "type": "vtl",
+                    "response": "graphql/resolvers/ddbStaticDs/Query/getRiderResultsInRaces/response.vl",
+                    "request": "graphql/resolvers/ddbStaticDs/Query/getRiderResultsInRaces/request.vl"
+                },
+                {
+                    "name": "getRiderStartLists",
+                    "type": "vtl",
+                    "response": "graphql/resolvers/ddbStaticDs/Query/getRiderStartLists/response.vl",
+                    "request": "graphql/resolvers/ddbStaticDs/Query/getRiderStartLists/request.vl"
+                },
+                {
+                    "name": "getRidersInRace",
+                    "type": "vtl",
+                    "response": "graphql/resolvers/ddbStaticDs/Query/getRidersInRace/response.vl",
+                    "request": "graphql/resolvers/ddbStaticDs/Query/getRidersInRace/request.vl"
+                },
+                {
+                    "name": "listRiders",
+                    "type": "vtl",
+                    "response": "graphql/resolvers/ddbStaticDs/Query/listRiders/response.vl",
+                    "request": "graphql/resolvers/ddbStaticDs/Query/listRiders/request.vl"
+                }
+            ]
+        },
+        "ddbLiveDs": {
+            "Query": [
+                {
+                    "name": "getRiderLiveTracking",
+                    "type": "vtl",
+                    "response": "graphql/resolvers/ddbLiveDs/Query/getRiderLiveTracking/response.vl",
+                    "request": "graphql/resolvers/ddbLiveDs/Query/getRiderLiveTracking/request.vl"
+                },
+                {
+                    "name": "getRiderLiveData",
+                    "type": "vtl",
+                    "response": "graphql/resolvers/ddbLiveDs/Query/getRiderLiveData/response.vl",
+                    "request": "graphql/resolvers/ddbLiveDs/Query/getRiderLiveData/request.vl"
+                }
+            ]
+        },
+        "wordpressHttpApiDs": {
+            "EventConnection": [
+                {
+                    "name": "wordpress",
+                    "type": "http",
+                    "response": "graphql/resolvers/ddbStaticDs/EventConnection/wordpress/response.vl",
+                    "request": "graphql/resolvers/ddbStaticDs/EventConnection/wordpress/request.vl"
+                }
+            ],
+            "Rider": [
+                {
+                    "name": "wordpress",
+                    "type": "http",
+                    "response": "graphql/resolvers/ddbStaticDs/Rider/wordpress/response.vl",
+                    "request": "graphql/resolvers/ddbStaticDs/Rider/wordpress/request.vl"
+                }
+            ],
+            "Query": [
+                {
+                    "name": "getWordpressRounds",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRounds/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRounds/request.vl"
+                },
+                {
+                    "name": "getWordpressRound",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRound/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRound/request.vl"
+                },
+                {
+                    "name": "getWordpressAppOptions",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressAppOptions/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressAppOptions/request.vl"
+                },
+                {
+                    "name": "getWordpressInfos",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressInfos/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressInfos/request.vl"
+                },
+                {
+                    "name": "getWordpressRiders",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRiders/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRiders/request.vl"
+                },
+                {
+                    "name": "getWordpressStories",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressStories/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressStories/request.vl"
+                },
+                {
+                    "name": "getWordpressVelodromes",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressVelodromes/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressVelodromes/request.vl"
+                },
+                {
+                    "name": "getWordpressRoundTweets",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRoundTweets/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRoundTweets/request.vl"
+                },
+                {
+                    "name": "getWordpressRoundRecords",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRoundRecords/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRoundRecords/request.vl"
+                },
+                {
+                    "name": "getWordpressRoundFeeds",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRoundFeeds/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRoundFeeds/request.vl"
+                },
+                {
+                    "name": "getWordpressRoundChannels",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRoundChannels/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressRoundChannels/request.vl"
+                },
+                {
+                    "name": "getWordpressPartners",
+                    "type": "http",
+                    "response": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressPartners/response.vl",
+                    "request": "graphql/resolvers/wordpressHttpApiDs/Query/getWordpressPartners/request.vl"
+                }
+            ]
+        }
+    },
+    "wordpressEndpoint": "https://ucitrackchampionsleague.com"
+}
+
+

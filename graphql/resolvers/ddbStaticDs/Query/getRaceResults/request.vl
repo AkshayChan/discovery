@@ -1,0 +1,13 @@
+{
+    "version" : "2017-02-28",
+    "operation" : "Query",
+    "index" : "sk-pk-index",
+    "query" : {
+        "expression": "sk = :mySK",
+        "expressionValues" : {
+            ":mySK": $util.dynamodb.toDynamoDBJson("RESULTS#RaceID=${ctx.args.raceId}#"),
+        }
+    },
+    "select" : "ALL_ATTRIBUTES",
+    "nextToken": $util.toJson($util.defaultIfNullOrEmpty($ctx.args.nextToken, null)),
+}

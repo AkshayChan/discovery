@@ -1,0 +1,5 @@
+{
+  "version": "2018-05-29",
+  "method": "GET",
+  "resourcePath": "/wp-json/tcl/v1.1/stories",
+}

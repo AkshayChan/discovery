@@ -1,0 +1,899 @@
+scalar AWSJSON
+
+type BlueJersey {
+    NOC: String
+    Message: String
+    ShortTVName: String
+    Team: String
+    Gender: String
+    SeasonID: String
+    UCIID: String
+    Bib: String
+    FirstName: String
+    LastName: String
+    PointsTotal: String
+    League: String
+}
+
+type Cheer {
+    cheers: String
+    uciId: String
+    raceId: String
+}
+
+type Classification {
+    Bib: String
+    EventID: String
+    FirstName: String
+    Gender: String
+    LastName: String
+    League: String
+    Message: String
+    NOC: String
+    Points: String
+    RaceType: String
+    Rank: String
+    SeasonID: String
+    ShortTVName: String
+    State: String
+    Status: String
+    Team: String
+    TimeStamp: String
+    UCIID: String
+}
+
+type CurrentRiderData {
+    aggLive: [LiveAggData]
+    aggTracking: [LiveTrackingAggData]
+    tracking: [LiveTrackingData]
+    live: [LiveRidersData]
+    joinedLive: [JoinedLiveRidersData]
+}
+
+type Endurance {
+    NOC: String
+    Message: String
+    ShortTVName: String
+    League: String
+    Team: String
+    Gender: String
+    SeasonID: String
+    UCIID: String
+    Bib: String
+    FirstName: String
+    LastName: String
+    PointsTotal: String
+}
+
+type Event {
+    Date: String
+    Message: String
+    RaceType: String
+    Distance: String
+    Laps: String
+    TimeStamp: String
+    RaceID: String
+    SeasonID: String
+    RaceName: String
+    EventID: String
+    EventName: String
+    StartTime: String
+}
+
+type EventConnection {
+    eventName: String
+    eventId: String
+    races: [Race]
+    wordpress: WordpressRound
+}
+
+type EventRound {
+    NoOfRiders: String
+    Heat: String
+    RaceID: String
+    Riders: [Result]
+    Race: Race
+    RidersUCIID: [String]
+}
+
+input FieldInput {
+    field: String!
+    value: String!
+}
+
+type JoinedLiveRidersData {
+    AvgRaceRiderCadency: String
+    AvgRaceRiderPower: String
+    AvgRaceRiderSpeed: String
+    Bib: String
+    EventID: String
+    EventTimeStamp: String
+    IsInHeartrateGreenZone: String
+    IsInHeartrateOrangeZone: String
+    IsInHeartrateRedZone: String
+    LeagueCat: String
+    MaxRaceCadency: String
+    MaxRacePower: String
+    MaxRaceRiderCadency: String
+    MaxRaceRiderPower: String
+    MaxRaceRiderSpeed: String
+    MaxRaceSpeed: String
+    Message: String
+    RaceID: String
+    RiderCadency: String
+    RiderPower: String
+    RiderSpeed: String
+    SeasonID: String
+    TimeSpentInGreenZone: String
+    TimeSpentInOrangeZone: String
+    TimeSpentInRedZone: String
+    UCIID: String
+    RiderHeartrate: String
+    AvgRaceRiderHeartrate: String
+    MaxRaceRiderHeartrate: String
+}
+
+type LiveAggData {
+    AvgRaceRiderCadency: String
+    AvgRaceRiderHeartrate: String
+    AvgRaceRiderPower: String
+    Bib: String
+    EventID: String
+    EventTimeStamp: String
+    LeagueCat: String
+    MaxRaceCadency: String
+    MaxRaceHeartrate: String
+    MaxRacePower: String
+    MaxRaceRiderCadency: String
+    MaxRaceRiderHeartrate: String
+    MaxRaceRiderPower: String
+    Message: String
+    RaceID: String
+    RiderCadency: String
+    RiderHeartrate: String
+    RiderPower: String
+    SeasonID: String
+    TimeSpentInRedZone: String
+    UCIID: String
+}
+
+type LiveRidersData {
+    Message: String
+    RiderHeartrate: String
+    RiderPower: String
+    RiderCadency: String
+    ServerTimeStamp: String
+    RaceID: String
+    SeasonID: String
+    UCIID: String
+    EventID: String
+    Bib: String
+    EventTimeStamp: String
+}
+
+type LiveTrackingAggData {
+    Message: String
+    AvgRaceRiderSpeed: String
+    RaceID: String
+    SeasonID: String
+    MaxRaceRiderSpeed: String
+    UCIID: String
+    EventID: String
+    RiderSpeed: String
+    MaxRaceSpeed: String
+    EventTimeStamp: String
+}
+
+type LiveTrackingData {
+    Bib: String
+    EventID: String
+    EventTimeStamp: String
+    Message: String
+    RaceID: String
+    RiderRank: String
+    SeasonID: String
+    ServerTimeStamp: String
+    State: String
+    UCIID: String
+}
+
+type Mutation {
+    test(data: String): AWSJSON
+    cheerRider(uciId: String!, raceId: String!): Cheer
+}
+
+type Query {
+    # Get events
+    getEvents(year: String): [EventConnection]
+    # Get Rider questionnaire
+    getRider(uciId: String!): Rider
+    # Get Rider results
+    getRiderDetails(eventId: String, uciId: String!): [RiderDetails]
+    # Get list of riders
+    listRiders(filter: TableRiderFilterInput, limit: Int, nextToken: String): RiderConnection
+    # Get all riders starting in race
+    getRidersInRace(raceId: String!): RiderRaceConnection
+    # Get Races for Event
+    getRacesForEvent(eventId: String!, nextToken: String): RaceConnection
+    # Results of race
+    getRaceResults(raceId: String!, nextToken: String): ResultConnection
+    # getRiderResults -> In all races
+    getRiderResultsInRaces(uciId: String!, nextToken: String): ResultConnection
+    ## Get all races start lists of rider
+    getRiderStartLists(uciId: String!, nextToken: String): RiderRaceConnection
+    ## Get live tracking data of rider
+    getRiderLiveTracking(
+        raceId: String!,
+        uciId: String!,
+        limit: Int,
+        nextToken: String
+    ): RiderLiveTrackingConnection
+    ## Get live data of rider
+    getRiderLiveData(
+        raceId: String!,
+        uciId: String!,
+        limit: Int,
+        nextToken: String
+    ): RiderLiveDataConnection
+    ## Get last results for each rider in race or one rider
+    getCurrentRiderData(raceId: String!, uciId: String, nextToken: String): [JoinedLiveRidersData]
+    ## Return classifications for event
+    getClassification(uciId: String!, eventId: String!): Classification
+    getRaceResultStats(raceId: String!): RaceResultStats
+    getRidersResultsStats(raceId: String!, uciId: String): [RiderResultsStats]
+    # Get Event Standings per league or race type
+    getEventStandings(eventId: String!, league: String, raceType: String): [Standings]
+    # Get Season Standings
+    getSeasonStandings(seasonId: String!): [Standings]
+    ## Get blue jerseys for season
+    getSeasonBlueJerseys(seasonId: String!): [BlueJersey]
+    # Get Season stat awards
+    getStatAwards(seasonId: String!, eventId: String): [StatMax]
+    # Get heats schedule with results
+    getEventRounds(eventId: String!): [EventRound]
+    # Get heats schedule with results
+    getEventRoundsLatter(eventId: String!): [BracketRounds]
+    getLeagues(eventId: String!): [League]
+    getLiveRace(eventId: String!): [LiveRace]
+    ## Wordpress
+    getWordpressRounds: [WordpressRound]
+    getWordpressVelodromes: [WordpressVelodrome]
+    getWordpressRiders: [WordpressRider]
+    getWordpressPartners: [WordpressPartner]
+    getWordpressInfos: [WordpressInfo]
+    getWordpressStories(latestID: String): [WordpressStory]
+    getWordpressAppOptions: AWSJSON
+    getWordpressRound(id: String!): WordpressRound
+    getWordpressRoundFeeds(id: String!): [WordpressRoundFeed]
+    getWordpressRoundRecords(id: String!): [WordpressRoundRecord]
+    getWordpressRoundTweets(id: String!): [WordpressRoundTweet]
+    getWordpressRoundChannels(id: String!): [WordpressRoundChannel]
+}
+
+type BracketRounds {
+    League: String
+    RacesTypes: [RaceTypes]
+}
+
+type RaceTypes {
+    RaceType: String
+    Rounds: [RaceTypeRound]
+}
+
+type RaceTypeRound {
+    Round: String
+    Message: String
+    League: String
+    RaceType: String
+    RoundName: String
+    SeasonID: String
+    Duration: String
+    NoOfHeatsInRound: String
+    sk: String
+    EventID: String
+    pk: String
+    StartTime: String
+    Races: [Race]
+    RacesInRound: [RacesInRound]
+}
+
+type RacesInRound {
+    NoOfRiders: String
+    Heat: String
+    RaceID: String
+    RidersUCIID: [String]
+}
+
+type LiveRace {
+    Round: Round
+    Race: Race
+    Laps: Lap
+}
+
+type Round {
+    Round: String
+    Message: String
+    League: String
+    RaceType: String
+    RoundName: String
+    SeasonID: String
+    Duration: String
+    NoOfHeatsInRound: String
+    sk: String
+    EventID: String
+    pk: String
+    StartTime: String
+    RacesInRound: [EventRound]
+}
+type Lap {
+    Message: String
+    KinesisAnalyticsIngestTime: String
+    LapsToGo: String
+    ServerTimeStamp: String
+    DynamoIngestTime: String
+    RaceID: String
+    SeasonID: String
+    sk: String
+    EventID: String
+    pk: String
+    ApiIngestTime: String
+    DistanceToGo: String
+}
+type League {
+    League: String
+    RaceTypes: [String]
+}
+
+type WordpressPartner {
+    id: String
+}
+type Race {
+    Date: String
+    Distance: String
+    EventID: String
+    EventName: String
+    Gender: String
+    Heat: String
+    Laps: String
+    League: String
+    Message: String
+    RaceID: String
+    RaceName: String
+    RaceStatus: String
+    RaceType: String
+    Round: String
+    SeasonID: String
+    StartTime: String
+    TimeStamp: String
+    TotalHeats: String
+    TotalRounds: String
+}
+
+type RaceConnection {
+    items: [Race]
+    nextToken: String
+}
+
+type RaceLiveData {
+    Date: String
+    Message: String
+    RaceType: String
+    Distance: String
+    Laps: String
+    TimeStamp: String
+    RaceID: String
+    SeasonID: String
+    RaceName: String
+    EventID: String
+    EventName: String
+    StartTime: String
+}
+
+type RaceResultStats {
+    MaxRaceRiderCadency: String
+    MaxRaceRiderCadencyUCIID: String
+    MaxRaceRiderSpeed: String
+    MaxRaceRiderSpeedUCIID: String
+    MaxRaceRiderPower: String
+    MaxRaceRiderPowerUCIID: String
+}
+
+type RaceRiderWithCount {
+    RiderCount: String
+    Bib: String
+    Distance: String
+    EventID: String
+    FirstName: String
+    LastName: String
+    Message: String
+    NOC: String
+    RaceID: String
+    RaceLaps: String
+    RaceName: String
+    RaceType: String
+    SeasonID: String
+    ShortTVName: String
+    StartingLane: String
+    StartPosition: String
+    Status: String
+    Team: String
+    TimeStamp: String
+    UCIID: String
+}
+
+type RacesWithLiveData {
+    races: RaceConnection
+}
+
+type Result {
+    Bib: String
+    Distance: String
+    EventID: String
+    FirstName: String
+    Gender: String
+    Heat: String
+    Laps: String
+    LastName: String
+    League: String
+    Message: String
+    NOC: String
+    RaceID: String
+    RaceLaps: String
+    RaceName: String
+    RaceSpeed: Float
+    RaceTime: String
+    RaceType: String
+    Rank: String
+    Round: String
+    SeasonID: String
+    ShortTVName: String
+    State: String
+    Status: String
+    Team: String
+    TimeStamp: String
+    TotalHeats: String
+    TotalRounds: String
+    UCIID: String
+}
+
+type ResultConnection {
+    items: [Result]
+    nextToken: String
+}
+
+type Rider {
+    FirstName: String
+    LastName: String
+    BirthDate: String
+    UCIID: String
+    Gender: String
+    TrainingLocation: String
+    LeagueCat: String
+    Nationality: String
+    SeasonTitle: String
+    HeightCm: String
+    WeightKg: String
+    RestHrBpm: String
+    MaxHrBpm: String
+    Flying200: String
+    GearingForFlying200: String
+    PowerPeakW: String
+    Power5sW: String
+    Power15sW: String
+    Power30sW: String
+    Power60sW: String
+    Power120sW: String
+    Power180sW: String
+    Power300sW: String
+    Power600sW: String
+    Power1200sW: String
+    Power1800sW: String
+    Power3600sW: String
+    Bip: Int
+    wordpress: WordpressRider
+}
+
+type RiderConnection {
+    items: [Rider]
+    nextToken: String
+}
+
+type RiderDetails {
+    Bib: String
+    EventID: String
+    FirstName: String
+    Gender: String
+    LastName: String
+    League: String
+    Message: String
+    NOC: String
+    pk: String
+    Points: String
+    RaceType: String
+    Rank: String
+    SeasonID: String
+    ShortTVName: String
+    sk: String
+    State: String
+    Status: String
+    Team: String
+    TimeStamp: String
+    UCIID: String
+}
+
+type RiderLiveData {
+    Bib: String
+    EventID: String
+    EventTimeStamp: String
+    RaceID: String
+    RiderCadency: String
+    RiderHeartrate: String
+    RiderPower: String
+    SeasonID: String
+    ServerTimeStamp: String
+    UCIID: String
+}
+
+type RiderLiveDataConnection {
+    items: [RiderLiveData]
+    nextToken: String
+}
+
+type RiderLiveTracking {
+    Acc: String
+    RiderRank: String
+    Lng: String
+    Distance: String
+    SpeedMax: String
+    DistanceNext: String
+    ServerTimeStamp: String
+    State: String
+    DistanceFirst: String
+    RaceID: String
+    SeasonID: String
+    DistanceProj: String
+    UCIID: String
+    EventID: String
+    SpeedAvg: String
+    Bib: String
+    Speed: String
+    EventTimeStamp: String
+    Lat: String
+}
+
+type RiderLiveTrackingConnection {
+    items: [RiderLiveTracking]
+    nextToken: String
+}
+
+type RiderRace {
+    Message: String
+    SeasonID: String
+    EventID: String
+    RaceID: String
+    Gender: String
+    RaceType: String
+    League: String
+    Heat: String
+    TotalHeats: String
+    Round: String
+    TotalRounds: String
+    PredictedRank: String
+    RaceName: String
+    RaceLaps: String
+    Distance: String
+    TimeStamp: String
+    Bib: String
+    UCIID: String
+    FirstName: String
+    LastName: String
+}
+
+type RiderRaceConnection {
+    items: [RiderRace]
+    nextToken: String
+}
+
+type RiderResultsStats {
+    MaxRaceRiderCadency: String
+    Message: String
+    KinesisAnalyticsIngestTime: String
+    RiderCadency: String
+    AvgRaceRiderSpeed: String
+    IsInHeartrateOrangeZone: String
+    DynamoIngestTime: String
+    TimeSpentInGreenZone: String
+    MaxRacePower: String
+    RaceID: String
+    AvgRaceRiderPower: String
+    sk: String
+    RiderSpeed: String
+    AvgRaceRiderCadency: String
+    TimeSpentInOrangeZone: String
+    IsInHeartrateRedZone: String
+    MaxRaceCadency: String
+    RiderPower: String
+    IsInHeartrateGreenZone: String
+    MaxRaceRiderPower: String
+    SeasonID: String
+    LeagueCat: String
+    MaxRaceRiderSpeed: String
+    UCIID: String
+    EventID: String
+    Bib: String
+    pk: String
+    ApiIngestTime: String
+    EventTimeStamp: String
+    MaxRaceSpeed: String
+    TimeSpentInRedZone: String
+}
+
+input SearchInput {
+    term: String!
+}
+
+type Standings {
+    Standings: [Standing]
+    League: String
+}
+
+type Standing {
+    NOC: String
+    Message: String
+    ShortTVName: String
+    League: String
+    Team: String
+    Gender: String
+    SeasonID: String
+    UCIID: String
+    Bib: String
+    FirstName: String
+    LastName: String
+    PointsTotal: String
+}
+
+type StatMax {
+    MaxCadency: StatMaxRiderValue
+    MaxSpeed: StatMaxRiderValue
+    MaxPower: StatMaxRiderValue
+    League: String
+}
+
+type StatMaxRiderValue {
+    value: String
+    UCIID: String
+}
+
+type Subscription {
+    onCheer(uciId: String!): Cheer
+    @aws_subscribe(mutations: ["cheerRider"])
+}
+
+input TableBooleanFilterInput {
+    ne: Boolean
+    eq: Boolean
+}
+
+input TableEventFilterInput {
+    pk: TableIDFilterInput
+    name: TableStringFilterInput
+    where: TableStringFilterInput
+    when: TableStringFilterInput
+    description: TableStringFilterInput
+}
+
+input TableFloatFilterInput {
+    ne: Float
+    eq: Float
+    le: Float
+    lt: Float
+    ge: Float
+    gt: Float
+    contains: Float
+    notContains: Float
+    between: [Float]
+}
+
+input TableIDFilterInput {
+    ne: ID
+    eq: ID
+    le: ID
+    lt: ID
+    ge: ID
+    gt: ID
+    contains: ID
+    notContains: ID
+    between: [ID]
+    beginsWith: ID
+}
+
+input TableIntFilterInput {
+    ne: Int
+    eq: Int
+    le: Int
+    lt: Int
+    ge: Int
+    gt: Int
+    contains: Int
+    notContains: Int
+    between: [Int]
+}
+
+input TableRiderFilterInput {
+    pk: TableStringFilterInput
+    FirstName: TableStringFilterInput
+    LastName: TableStringFilterInput
+    BirthDate: TableStringFilterInput
+    UCIID: TableStringFilterInput
+    Gender: TableStringFilterInput
+    TrainingLocation: TableStringFilterInput
+    LeagueCat: TableStringFilterInput
+    Nationality: TableStringFilterInput
+    SeasonTitle: TableStringFilterInput
+    HeightCm: TableStringFilterInput
+    WeightKg: TableStringFilterInput
+    RestHrBpm: TableStringFilterInput
+    MaxHrBpm: TableStringFilterInput
+    Flying200: TableStringFilterInput
+    GearingForFlying200: TableStringFilterInput
+    PowerPeakW: TableStringFilterInput
+    Power5sW: TableStringFilterInput
+    Power15sW: TableStringFilterInput
+    Power30sW: TableStringFilterInput
+    Power60sW: TableStringFilterInput
+    Power120sW: TableStringFilterInput
+    Power180sW: TableStringFilterInput
+    Power300sW: TableStringFilterInput
+    Power600sW: TableStringFilterInput
+    Power1200sW: TableStringFilterInput
+    Power1800sW: TableStringFilterInput
+    Power3600sW: TableStringFilterInput
+}
+
+input TableStringFilterInput {
+    ne: String
+    eq: String
+    le: String
+    lt: String
+    ge: String
+    gt: String
+    contains: String
+    notContains: String
+    between: [String]
+    beginsWith: String
+}
+
+type WordpressInfo {
+    id: Int
+    title: String
+    subtitle: String
+    content: String
+    imageURI: String
+    linkText: String
+    category: String
+}
+
+type WordpressRider {
+    id: Int
+    uciID: String
+    firstName: String
+    lastName: String
+    countryCode: String
+    countryName: String
+    age: Int
+    birthdate: String
+    height: Int
+    weight: Int
+    biography: String
+    portraitImageURI: String
+    isBlueJersey: Boolean
+    isRiderToWatch: Boolean
+    isGuest: Boolean
+    isFoundingPartner: Boolean
+    facebookURL: String
+    instagramURL: String
+    twitterURL: String
+    websiteURL: String
+    youtubeURL: String
+    palmares: [String]
+}
+
+type WordpressRound {
+    id: Int
+    uciID: String
+    title: String
+    introduction: String
+    description: String
+    startDate: String
+    timezone: String
+    countryCode: String
+    countryName: String
+    city: String
+    ticketsURL: String
+    logoImageURI: String
+    trackMapImageURI: String
+    programFileURI: String
+    twitterUsername: String
+    velodromeID: String
+    whatToExpect: [String]
+}
+
+type WordpressRoundChannel {
+    id: Int
+    title: String
+    url: String
+    logoImageURI: String
+    countryCode: String
+    countryName: String
+}
+
+type WordpressRoundFeed {
+    id: Int
+    title: String
+    race: String
+    heat: String
+    content: String
+    imageURI: String
+    important: Boolean
+    leagueUCIID: String
+    DisciplineUCIID: String
+    RoundUCIID: String
+}
+
+type WordpressRoundRecord {
+    id: Int
+    title: String
+    description: String
+    leagueUCIID: String
+    disciplineUCIID: String
+    riderUCIID: String
+    roundUCIID: String
+}
+
+type WordpressRoundTweet {
+    id: Int
+    authorName: String
+    username: String
+    avatarImageURI: String
+    content: String
+    date: String
+    url: String
+}
+
+type WordpressStory {
+    id: Int
+    title: String
+    content: String
+    imageURI: String
+    isTopStory: Boolean
+    categories: [String]
+}
+
+type WordpressVelodrome {
+    id: Int
+    title: String
+    subtitle: String
+    description: String
+    planYourVisit: String
+    logoImageURI: String
+    videoURI: String
+    countryCode: String
+    countryName: String
+    city: String
+    cityWebsiteURL: String
+    websiteURL: String
+    inaugurationYear: String
+    designer: String
+    length: String
+    width: String
+    bankingDegrees: String
+    woodType: String
+    galleryPhotosURIs: [String]
+    facts: [String]
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+    subscription: Subscription
+}

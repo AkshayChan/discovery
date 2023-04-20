@@ -1,0 +1,12 @@
+{
+    "version" : "2017-02-28",
+    "operation" : "Query",
+    "query" : {
+        "expression": "pk = :myPK and begins_with(sk, :mySK)",
+        "expressionValues" : {
+            ":myPK": $util.dynamodb.toDynamoDBJson("RIDER#UCIID=${ctx.args.uciId}#"),
+            ":mySK": $util.dynamodb.toDynamoDBJson("RACE#"),
+        }
+    },
+    "select" : "ALL_ATTRIBUTES",
+}
